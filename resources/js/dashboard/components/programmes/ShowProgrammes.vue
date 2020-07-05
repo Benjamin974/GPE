@@ -1,24 +1,36 @@
 <template>
   <v-container>
-    <addProgramme v-on:addProgramme="programmes.push($event)"></addProgramme>
-    <v-row>
-      <v-col cols="12" sm="6" md="4" lg="4" v-for="(programme,key) in programmes" :key="key">
-        <v-card class="mx-auto" max-width="300">
-          <v-img :src="programme.image.lien" height="200px"></v-img>
-
-          <v-card-title>{{programme.name}}</v-card-title>
-
-          <v-card-text>Difficulté : {{programme.difficulte}}</v-card-text>
-
-          <v-card-text> Prix : {{programme.prix}} </v-card-text>
-          <v-card-actions>
-
-            <v-btn color="purple" text :to="'/coach/programme/' + programme.id"> Voir plus </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-      
-    </v-row>
+    <addProgramme v-on:addProgramme="programmes.push($event)" class="pb-5"></addProgramme>
+    <div width="80%" class="pt-5 pb-5">
+      <div v-if="!programmes.length">
+        <p>Vous n'avez pas de programme</p>
+      </div>
+      <v-data-table
+        v-if="programmes.length"
+        :headers="headers"
+        :items="programmes"
+        class="elevation-4"
+        :items-per-page="5"
+      >
+        <template v-slot:item.programmes="{ item }">{{item.name}}</template>
+        <template v-slot:item.difficulte="{ item }">{{item.difficulte}}</template>
+        <template v-slot:item.seance="{ item }">{{item.seance}}</template>
+        <template v-slot:item.actions="{ item }">
+          <v-row>
+            <v-col md="6">
+              <addProgramme :programmes='item' :isModification='true'/>
+            </v-col>
+            <v-col md="6">
+              <deleteProgramme
+                :programme="item"
+                :programmes="programmes"
+                v-on:programmeToDelete="programmes.splice(item, 1)"
+              />
+            </v-col>
+          </v-row>
+        </template>
+      </v-data-table>
+    </div>
   </v-container>
 </template>
 

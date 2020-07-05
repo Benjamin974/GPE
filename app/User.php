@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\ProgrammeModel', 'client_has_programme', 'id_client', 'id_programme');
     }
+
+    public function salleDeSport()
+    {
+        return $this->belongsToMany('App\SalleDeSportModel', 'salles_de_sport_has_users', 'id_salle_de_sport', 'id_user');
+    }
 }

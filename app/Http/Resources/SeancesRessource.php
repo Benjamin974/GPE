@@ -16,9 +16,10 @@ class SeancesRessource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'contenu_seance_par_jour' => $this->contenu_seance_par_jour,
-            'image' => $this->image
+            'exercice' => $this->exercice,
+            'quantite_serie' => $this->quantite_serie,
+            'temps_recuperation' => $this->temps_recuperation,
+            'nombre_jours' => $this->nombre_jours
         ];;
     }
 }

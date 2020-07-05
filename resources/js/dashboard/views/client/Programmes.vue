@@ -1,10 +1,13 @@
 <template>
   <v-container>
     <h1 class="text-center pb-5">Liste des programmes disponibles</h1>
+    <v-container class="mb-10 mt-10">
+      <v-system-bar height="10%" color="#FDD600"></v-system-bar>
+    </v-container>
 
     <v-row class="pt-5">
       <v-col md="4" v-for="(programme, key) in programmes" :key="key">
-        <v-card class="mx-auto" max-width="344" outlined>
+        <v-card class="mx-auto" max-width="344" outlined color="grey lighten-1">
           <v-list-item three-line>
             <v-list-item-content>
               <div class="overline mb-4">{{programme.name}}</div>
@@ -35,7 +38,7 @@
       ></v-select>
       <v-row>
         <v-col md="6">
-          <v-btn text class="mb-5" color="white" @click="choixProgramme">choisir</v-btn>
+          <v-btn text class="mb-5" color="black" @click="choixProgramme">choisir</v-btn>
         </v-col>
         <v-col md="6" v-for="(client, key) in clients" :key="key">
           <strong v-if="donneeAdd == false">Votre programme : {{recupProgrammes(client.programme)}}</strong>

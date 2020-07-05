@@ -3,27 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProgrammeModel extends Model
 {
     protected $table = 'programmes';
-    protected $fillable = ['id_user','id_salle_de_sport', 'id_seance', 'name', 'difficulte', 'nbre_seance_semaine', 'prix', 'id_image'];
+    protected $fillable = ['id_user', 'id_salle_de_sport', 'id_seance', 'name', 'difficulte', 'nbre_seance_semaine', 'prix', 'id_image'];
     public $timestamps = false;
+    use SoftDeletes;
 
-    function coach(){
-        return $this->belongsTo(User::class,'id_user');
+    function coach()
+    {
+        return $this->belongsTo(User::class, 'id_user');
     }
 
-    function salleDeSport(){
-        return $this->belongsTo(SalleDeSportModel::class,'id_salle_de_sport');
+    function salleDeSport()
+    {
+        return $this->belongsTo(SalleDeSportModel::class, 'id_salle_de_sport');
     }
 
-    function seance(){
-        return $this->belongsTo(SeanceModel::class,'id_seance');
+    function seance()
+    {
+        return $this->belongsTo(SeanceModel::class, 'id_seance');
     }
 
-    function image(){
-        return $this->belongsTo(ImagesModel::class,'id_image');
+    function image()
+    {
+        return $this->belongsTo(ImagesModel::class, 'id_image');
     }
 
     function client()

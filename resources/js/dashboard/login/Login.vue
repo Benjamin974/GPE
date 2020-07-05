@@ -3,9 +3,8 @@
     <v-container class="fill-height" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="4">
-          <v-card class="elevation-12">
-            <v-toolbar color="brown" dark flat>
-              <v-toolbar-title>Indentifiez-vous</v-toolbar-title>
+            <v-toolbar color="grey darken-3" dark flat>
+              <v-toolbar-title>Veuillez vous identifer</v-toolbar-title>
               <v-spacer />
             </v-toolbar>
             <v-card-text>
@@ -31,9 +30,8 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn outlined color="success" :disabled="!valid" @click="connection">Connexion</v-btn>
+              <v-btn light color="#FDD600" :disabled="!valid" @click="connection">Connexion</v-btn>
             </v-card-actions>
-          </v-card>
         </v-col>
       </v-row>
     </v-container>

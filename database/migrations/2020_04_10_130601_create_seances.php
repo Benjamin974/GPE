@@ -15,9 +15,10 @@ class CreateSeances extends Migration
     {
         Schema::create('seances', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('contenu_seance_par_jour', 500);
-            $table->string('image');
+            $table->string('exercice');
+            $table->string('quantite_serie');
+            $table->string('temps_recuperation');
+            $table->string('nombre_jours');
             $table->timestamps();
         });
 

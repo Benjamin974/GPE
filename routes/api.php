@@ -21,6 +21,9 @@ Route::middleware('auth:api')->prefix('users')->group(function () {
 
 Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout')->middleware('auth:api');
+Route::post('register', 'AuthController@register');
+Route::post('contact', 'AdminController@contact')->middleware('auth:api');
+
 
 Route::middleware('auth:api')->prefix('programmes')->group(function () {
     Route::get('/', 'ProgrammesController@index');
@@ -40,3 +43,8 @@ Route::middleware('auth:api')->prefix('client/programmes')->group(function() {
     Route::post('/delete', 'ProgrammesController@deleteProgramme');
 });
 
+Route::middleware('auth:api')->prefix('gerant')->group(function() {
+    Route::get('/{id}', 'SallesController@index')->where('id', "[0-9]+");
+    Route::post('/{id}', 'SallesController@updateRoom')->where('id', "[0-9]+");
+    Route::get('/clients', 'SallesController@getClients');
+});

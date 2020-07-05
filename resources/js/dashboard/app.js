@@ -5,7 +5,6 @@ import Layout from './layouts/Layout';
 import 'vuetify/dist/vuetify.min.css';
 import _ from 'lodash';
 
-
 Vue.use(Vuetify);
 
 const app = new Vue({
@@ -14,6 +13,5 @@ const app = new Vue({
     router: Routes,
     components: { Layout }
 })
-
 
 export default new Vuetify(app);

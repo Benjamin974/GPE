@@ -4,11 +4,11 @@
       href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
       rel="stylesheet"
     />
-    <div class="nav test">
+    <div class="nav">
         <navbar></navbar>
     </div>
 
-    <v-content class="test">
+    <v-content>
       <v-container fluid>
         <router-view></router-view>
       </v-container>
@@ -31,6 +31,6 @@ export default {
 
 <style>
 .test {
-  background-color: gray;
+  background-color: '#9FA8D';
 }
 </style>

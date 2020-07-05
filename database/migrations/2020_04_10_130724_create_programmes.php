@@ -25,6 +25,7 @@ class CreateProgrammes extends Migration
             $table->string('difficulte');
             $table->string('nbre_seance_semaine');
             $table->string('prix');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

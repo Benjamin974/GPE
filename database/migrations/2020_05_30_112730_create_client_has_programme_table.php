@@ -14,6 +14,7 @@ class CreateClientHasProgrammeTable extends Migration
     public function up()
     {
         Schema::create('client_has_programme', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('id_client')->unsigned();
             $table->bigInteger('id_programme')->unsigned();
 
