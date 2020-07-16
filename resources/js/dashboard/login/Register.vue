@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <h1>Créer votre compte</h1>
     <v-container class="mb-10 mt-10">
+      <h1>Créer votre compte</h1>
       <v-system-bar height="10%" color="#FDD600"></v-system-bar>
     </v-container>
 

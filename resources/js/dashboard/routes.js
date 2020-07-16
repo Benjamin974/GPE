@@ -5,7 +5,6 @@ import Programmes from './views/admin/Programmes.vue';
 import ProgrammesClient from './views/client/Programmes.vue';
 import Salle from './views/gerant/Salle.vue';
 import Login from './login/Login.vue';
-import Register from './login/Register.vue';
 import { Role } from './_helpers/role.js';
 import { authenticationService } from '../dashboard/_services/authentication.service'
 Vue.use(VueRouter);
@@ -23,11 +22,6 @@ const router = new VueRouter({
         component: Login
     },
     {
-        path: '/register',
-        name: 'register',
-        component: Register
-    },
-    {
         path: '/coach/programmes/:id',
         name: 'programmes',
         component: Programmes,
@@ -36,7 +30,8 @@ const router = new VueRouter({
     {
         path: '/client/programmes',
         name: 'programmeclient',
-        component: ProgrammesClient
+        component: ProgrammesClient,
+        meta: { authorize: [Role.Client] }
     },
 
     {

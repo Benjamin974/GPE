@@ -7,6 +7,7 @@
           <v-icon>mdi-shape-square-plus</v-icon>
         </v-btn>
         <v-btn
+          text
           v-if="isModification"
           class="ma-2"
           dark
@@ -96,7 +97,6 @@
             <v-spacer></v-spacer>
             <v-btn color="red" text @click="dialog = false">Annuler</v-btn>
             <v-btn color="brown" text @click="ajout">Enregistrer</v-btn>
-            <p>{{text}}</p>
           </v-card-actions>
         </v-form>
       </v-card>

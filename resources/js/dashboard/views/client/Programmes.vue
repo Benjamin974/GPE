@@ -45,7 +45,7 @@
           <v-btn v-if="donneeAdd == false" text @click="deletePrograme()">
             <v-icon>mdi-close-box-outline</v-icon>
           </v-btn>
-          <strong v-if="donneeAdd == true">Votre programme : {{programmeChoisi.name}}</strong>
+          <strong v-if="donneeAdd == true">Votre programme : {{programmeChoisi.name}} </strong>
           <v-btn v-if="donneeAdd == true" text @click="deletePrograme()">
             <v-icon>mdi-close-box-outline</v-icon>
           </v-btn>

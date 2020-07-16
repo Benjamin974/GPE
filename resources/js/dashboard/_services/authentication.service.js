@@ -28,10 +28,15 @@ function login(user) {
         .then(handleResponse)
         .then(({ data }) => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem("currentUser", JSON.stringify(data));
-            currentUserSubject.next(data);
+            if (data == undefined) {
+                console.log('Mot de passe ou email incorrect');
+            } else {
+                localStorage.setItem("currentUser", JSON.stringify(data));
+                currentUserSubject.next(data);
 
-            return data;
+                return data;
+            }
+
         });
 }
 

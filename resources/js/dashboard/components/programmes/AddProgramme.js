@@ -4,7 +4,15 @@ export default {
         programmes: {
             default: function () {
                 return {}
-            }
+            },
+
+        },
+
+        programme: {
+            default: function () {
+                return {}
+            },
+
         },
 
         isModification: {
@@ -79,13 +87,18 @@ export default {
 
             }).then(({ data }) => {
                 if (this.isModification) {
-                    console.log(data.data)
+                    if(this.id) {
+                        const index = this.programmes.indexOf(this.programme);
+                        this.programmes.splice(index, 1);
+                        this.programmes.push(data.data);
+                    }
                     this.dialog = false;
                     this.$emit('modifProgramme', data.data)
                     this.snackbar = true;
                     this.text = 'Le programme a bien été modifier'
                 }
                 else if (!this.isModification) {
+                    console.log(data.data);
                     this.dialog = false;
                     this.$emit('addProgramme', data.data)
                     this.snackbar = true;
@@ -96,16 +109,15 @@ export default {
         },
 
         updateDatas() {
-            this.id = this.programmes.id,
-                this.name = this.programmes.name,
-                this.difficulte = this.programmes.difficulte,
-                this.nbre_seance_semaine = this.programmes.nbre_seance_semaine,
-                this.prix = this.programmes.prix,
+            this.id = this.programme.id,
+                this.name = this.programme.name,
+                this.difficulte = this.programme.difficulte,
+                this.nbre_seance_semaine = this.programme.nbre_seance_semaine,
+                this.prix = this.programme.prix,
                 this.coach = this.$route.params.id,
-                this.selectSdsport = this.programmes.salleDeSport,
-                this.selectImg = this.programmes.image,
-                this.selectSeance = this.programmes.seance
-            console.log(this.programmes.image.lien)
+                this.selectSdsport = this.programme.salleDeSport,
+                this.selectImg = this.programme.image,
+                this.selectSeance = this.programme.seance
         },
 
         recupId() {

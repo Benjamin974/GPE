@@ -7,8 +7,10 @@ use App\Http\Resources\ProgrammesRessource;
 use App\ImagesModel;
 use App\ProgrammeModel;
 use App\SalleDeSportModel;
+use App\SallesDeSportHasUsers;
 use App\SeanceModel;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,6 +19,18 @@ class ProgrammesController extends Controller
     public function index()
     {
         $programmes = ProgrammeModel::all();
+        return ProgrammesRessource::collection($programmes);
+    }
+
+    public function getProgrammesClients(Request $request) {
+        
+        $client = $request->user();
+        $clientId = $client->id;
+        $programmes = ProgrammeModel::with(['coach'])
+        ->whereHas('salleDeSport.client', function (Builder $query) use ($clientId) {
+            $query->where('id', '=', $clientId);
+        })->get();
+
         return ProgrammesRessource::collection($programmes);
     }
 

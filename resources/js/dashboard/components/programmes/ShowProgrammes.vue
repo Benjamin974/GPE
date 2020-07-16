@@ -14,17 +14,19 @@
       >
         <template v-slot:item.programmes="{ item }">{{item.name}}</template>
         <template v-slot:item.difficulte="{ item }">{{item.difficulte}}</template>
+        <template v-slot:item.image.lien="{ item }">
+          <v-img :src="item.image.lien" aspect-ratio="1.7"></v-img>
+        </template>
         <template v-slot:item.seance="{ item }">{{item.seance}}</template>
         <template v-slot:item.actions="{ item }">
           <v-row>
             <v-col md="6">
-              <addProgramme :programmes='item' :isModification='true'/>
+              <addProgramme :programme="item" :programmes='programmes' :isModification="true" />
             </v-col>
             <v-col md="6">
               <deleteProgramme
                 :programme="item"
                 :programmes="programmes"
-                v-on:programmeToDelete="programmes.splice(item, 1)"
               />
             </v-col>
           </v-row>

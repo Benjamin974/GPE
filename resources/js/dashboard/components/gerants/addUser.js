@@ -2,16 +2,22 @@ import { apiService } from '../../_services/apiService'
 export default {
     data: () => ({
         valid: true,
-        name: '',
+        nom: '',
         nameRules: [
-            v => !!v || 'Name is required',
+            v => !!v || 'Le nom est requis',
+            v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        ],
+        prenom: '',
+        firstnameRules: [
+            v => !!v || 'Le prénom est requis',
             v => (v && v.length <= 10) || 'Name must be less than 10 characters',
         ],
         email: '',
         emailRules: [
-            v => !!v || 'E-mail is required',
-            v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+            v => !!v || "E-mail requis",
+            v => /.+@.+\..+/.test(v) || "Ce champ doit être un email"
         ],
+        pwdRules: [v => !!v || "Mot de passe requis"],
         message: '',
         lazy: false,
 
@@ -29,21 +35,18 @@ export default {
             if (this.message == '') {
                 this.sameClient = 'Vous avez oublié votre message';
             } else {
-                console.log(this.name + ', ' + this.email)
-                apiService.post('/api/contact', { client: this.client.id, email: this.email, name: this.name, message: this.message }).then(({ data }) => {
+                apiService.post('/api/contact', { nom: this.nom, prenom:this.prenom, email: this.email, message: this.message }).then(({ data }) => {
                     if (data == 'l\'utilisateur est déjà dans la salle de sport') {
                         this.sameClient = data;
                         console.log(this.sameClient)
                     } else {
                         this.sameClient = 'Demande envoyé au client'
+                        console.log(data);
                     }
                 })
             }
 
 
-        },
-        reset() {
-            this.$refs.form.reset()
         },
 
         getClients() {

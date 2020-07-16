@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\UsersRessource;
+use App\SalleDeSportModel;
 use App\User;
 
 class UsersController extends Controller
@@ -19,4 +20,5 @@ class UsersController extends Controller
        $user = User::where('id', '=', $id)->get();
        return UsersRessource::collection($user);
     }
+
 }
