@@ -63,9 +63,6 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field v-model="prix" :rules="prixRules" label="Prix" required></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="4">
                   <v-select
                     :rules="id_salle_de_sportRules"
                     v-model="selectSdsport"

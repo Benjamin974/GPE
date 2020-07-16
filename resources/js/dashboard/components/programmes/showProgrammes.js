@@ -23,7 +23,6 @@ export default {
                 value: "programmes"
             },
             { text: "difficulte", value: "difficulte" },
-            { text: "prix", value: "prix" },
             { text: "seance", value: "seance.exercice" },
             { text: "image", value: "image.lien" },
             { text: "actions", value: "actions" },
