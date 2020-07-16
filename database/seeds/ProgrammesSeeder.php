@@ -1,5 +1,7 @@
 <?php
 
+use App\SalleDeSportModel;
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,6 +21,18 @@ class ProgrammesSeeder extends Seeder
                 "id_salle_de_sport" => 1,
                 "id_seance" => 1,
                 "name" => "programme de muscu",
+                "difficulte" => "difficile",
+                "nbre_seance_semaine" => "4",
+                "prix" => "40€/mois",
+                "id_image" => 2
+
+            ],
+            [
+                "id" => 4,
+                "id_user" => 1,
+                "id_salle_de_sport" => 1,
+                "id_seance" => 1,
+                "name" => "programme de gonflette",
                 "difficulte" => "difficile",
                 "nbre_seance_semaine" => "4",
                 "prix" => "40€/mois",
@@ -55,5 +69,12 @@ class ProgrammesSeeder extends Seeder
         DB::table('programmes')->insert(
             $array
         );
+
+        $user1 = User::where('name', '=', 'Henry')->first();
+        $user2 = User::where('name', '=', 'Benjamin')->first();
+        $salleDeSport1 = SalleDeSportModel::where('id', '=', 1)->first();
+        $salleDeSport2 = SalleDeSportModel::where('id', '=', 2)->first();
+        $salleDeSport1->client()->attach($user1);
+        $salleDeSport2->client()->attach($user2);
     }
 }

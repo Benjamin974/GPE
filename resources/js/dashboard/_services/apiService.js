@@ -20,6 +20,15 @@ export const apiService = {
 
         })
     },
+    delete(url, data = {}) {
+        return Axios({
+            method: 'delete',
+            url: url,
+            params: data, 
+            headers: headers()
+
+        })
+    },
 }
 
 function headers() {

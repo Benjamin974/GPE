@@ -8,13 +8,16 @@ export default {
             modalSeance: [],
             seance: {},
             params: {
-                name: {
+                exercice: {
                     type: 'text'
                 },
-                contenu_seance_par_jour: {
+                quantite_serie: {
                     type: 'textarea'
                 },
-                image: {
+                temps_recuperation: {
+                    type: 'text'
+                },
+                nombre_jours: {
                     type: 'text'
                 }
             }

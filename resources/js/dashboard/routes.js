@@ -2,8 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from './views/Home.vue';
 import Programmes from './views/admin/Programmes.vue';
-import Programme from './views/admin/Programme.vue';
 import ProgrammesClient from './views/client/Programmes.vue';
+import Salle from './views/gerant/Salle.vue';
 import Login from './login/Login.vue';
 import { Role } from './_helpers/role.js';
 import { authenticationService } from '../dashboard/_services/authentication.service'
@@ -28,14 +28,17 @@ const router = new VueRouter({
         meta: { authorize: [Role.Coach] }
     },
     {
-        path: '/coach/programme/:id',
-        name: 'programme',
-        component: Programme
-    },
-    {
         path: '/client/programmes',
         name: 'programmeclient',
-        component: ProgrammesClient
+        component: ProgrammesClient,
+        meta: { authorize: [Role.Client] }
+    },
+
+    {
+        path: '/gerant/salle/:id',
+        name: 'salle',
+        component: Salle,
+        meta: { authorize: [Role.Gerant] }
     },
     ]
 })

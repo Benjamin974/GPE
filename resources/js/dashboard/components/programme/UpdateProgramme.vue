@@ -32,4 +32,4 @@
   </v-dialog>
 </template>
 
-<script src="./UpdateProgramme.js" />
+<script src="./updateProgramme.js" />

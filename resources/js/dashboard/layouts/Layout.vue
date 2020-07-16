@@ -1,14 +1,14 @@
-<template >
+<template>
   <v-app>
     <link
       href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
       rel="stylesheet"
     />
-    <div class="nav test">
-        <navbar></navbar>
+    <div class="nav">
+      <navbar></navbar>
     </div>
 
-    <v-content class="test">
+    <v-content>
       <v-container fluid>
         <router-view></router-view>
       </v-container>
@@ -28,9 +28,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.test {
-  background-color: gray;
-}
-</style>

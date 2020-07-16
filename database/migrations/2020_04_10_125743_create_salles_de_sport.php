@@ -22,7 +22,15 @@ class CreateSallesDeSport extends Migration
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
+        Schema::create('salles_de_sport_has_users', function (Blueprint $table) {
+            $table->bigInteger('id_salle_de_sport')->unsigned();
+            $table->bigInteger('id_user')->unsigned();
+
+            $table->foreign('id_salle_de_sport')->references('id')->on('salles_de_sport');
+            $table->foreign('id_user')->references('id')->on('users');
+        });
     }
+
 
     /**
      * Reverse the migrations.
@@ -31,6 +39,8 @@ class CreateSallesDeSport extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('salles_de_sport_has_users');
+
         Schema::table('salles_de_sport', function (Blueprint $table) {
             Schema::disableForeignKeyConstraints();
             $table->dropForeign(['id_user']);

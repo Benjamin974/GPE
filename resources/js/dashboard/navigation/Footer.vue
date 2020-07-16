@@ -1,6 +1,6 @@
 <template>
-      <v-footer class="adminFooter brown">
-        <div class="adminFooterTexte">© JULIENNE BENJAMIN 2018-2020</div>
+      <v-footer class="adminFooter grey darken-1 pt-5">
+        <div class="adminFooterTexte">© JULIENNE BENJAMIN</div>
       </v-footer>
 </template>
 
@@ -10,7 +10,6 @@
   flex-flow: row;
   justify-content: flex-end;
   align-items: center;
-  background-color: brown;
   height: 50px;
   position: fixed;
   bottom: 0;

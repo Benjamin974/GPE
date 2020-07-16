@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SeanceModel extends Model
 {
     protected $table = 'seances';
-    protected $fillable = ['name', 'contenu_seance_par_jour', 'image'];
+    protected $fillable = ['exercice', 'quantite_serie', 'temps_recuperation', 'nombre_jours'];
     public $timestamps = false;
 
     function programme()

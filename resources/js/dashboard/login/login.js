@@ -17,6 +17,7 @@ export default {
             valid: true,
             loading: false,
             returnUrl: "",
+            erreur: '',
         };
     },
     created() {
@@ -31,8 +32,15 @@ export default {
 
             this.loading = true;
             authenticationService.login(this.user).then(
+
                 user => {
-                    this.$router.push(this.returnUrl);
+                    if (user == undefined) {
+                        this.erreur = 'mot de passe ou email incorrect'
+                    } else {
+                        this.erreur = '';
+                        this.$router.push(this.returnUrl);
+                    }
+
                 },
                 error => {
                     this.loading = false;

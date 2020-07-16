@@ -14,34 +14,26 @@ class SeancesSeeder extends Seeder
         $array = [
             [
                 "id" => 1,
-                "name" => 'Seance long',
-                "contenu_seance_par_jour" => "Développé couché : 4 séries de 10 répétitions.
-                                                Développé incliné : 4 séries de 10 répétitions.
-                                                Ecartés à la poulie vis-à-vis : 4 séries de 15 répétitions.
-                                                Dips : 4 séries de 10 répétitions.
-                                                Barre au front : 4 séries de 10 répétitions.",
-                "image" => "test"
+                "exercice" => 'développé couché et soulevé de terre',
+                "quantite_serie" => "5 série",
+                "temps_recuperation" => "1 min",
+                "nombre_jours" => "20 jours"
 
             ],
             [
                 "id" => 2,
-                "name" => 'Seance moyen',
-                "contenu_seance_par_jour" => "Traction à la barre en pronation: 6 x 10 répétitions.
-                                                Traction à la barre en supination: 6 x 9 répétitions.
-                                                Dips: 6 x 25.
-                                                Pompes inversées (mains plus basses que les pieds): 6 x 21.
-                                                Crunch inversés (dos incliné tête vers le bas): 6 x 50.",
-                "image" => "test"
+                "exercice" => "Traction à la barre en pronation, pompes inversées",
+                "quantite_serie" => "5 série",
+                "temps_recuperation" => "1 min",
+                "nombre_jours" => "20 jours"
 
             ],
             [
                 "id" => 3,
-                "name" => 'Seance courte',
-                "contenu_seance_par_jour" => "40' ciseaux, 20' récupération
-                40' jumping jacks, 20' récupération
-                40' corde à sauter, 20' récupération
-                40' squats saut vertical, 20' récupération",
-                "image" => "test"
+                "exercice" => "squats saut vertical",
+                "quantite_serie" => "5 série",
+                "temps_recuperation" => "1 min",
+                "nombre_jours" => "20 jours"
 
             ],
         ];

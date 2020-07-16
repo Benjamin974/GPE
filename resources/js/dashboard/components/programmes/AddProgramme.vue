@@ -2,14 +2,29 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="700px">
       <template v-slot:activator="{ on }">
-        <v-btn class="ma-2" dark v-on="on" tile outlined color="black">
-          <v-icon left>mdi-shape-square-plus</v-icon>Ajouter un Programme
+        <v-btn v-if="!isModification" class="ma-2" dark v-on="on" tile outlined color="black">
+          Nouveau programme
+          <v-icon>mdi-shape-square-plus</v-icon>
+        </v-btn>
+        <v-btn
+          text
+          v-if="isModification"
+          class="ma-2"
+          dark
+          v-on="on"
+          tile
+          outlined
+          color="#FDD600"
+          @click="updateDatas()"
+        >
+          <v-icon>mdi-pencil</v-icon>
         </v-btn>
       </template>
       <v-card>
         <v-form id="addCircuit" @submit="ajout">
           <v-card-title>
-            <span class="headline">Ajouter un Programme</span>
+            <span class="headline" v-if="!isModification">Ajouter un Programme</span>
+            <span class="headline" v-if="isModification">Modifier le programme</span>
           </v-card-title>
 
           <v-card-text>
@@ -22,7 +37,7 @@
                   <v-select
                     v-model="selectImg"
                     :items="itemsImg"
-                    item-text="name"
+                    item-text="lien"
                     item-value="id"
                     label="Images"
                     persistent-hint
@@ -67,7 +82,7 @@
                   <v-select
                     v-model="selectSeance"
                     :items="itemsSeance"
-                    item-text="name"
+                    item-text="exercice"
                     item-value="id"
                     label="seance"
                     persistent-hint
@@ -82,7 +97,6 @@
             <v-spacer></v-spacer>
             <v-btn color="red" text @click="dialog = false">Annuler</v-btn>
             <v-btn color="brown" text @click="ajout">Enregistrer</v-btn>
-            <p>{{text}}</p>
           </v-card-actions>
         </v-form>
       </v-card>

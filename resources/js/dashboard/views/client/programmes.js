@@ -28,6 +28,7 @@ export default {
             apiService.get('/api/client/programmes').then(({ data }) => {
                 data.data.forEach(_programmes => {
                     this.programmes.push(_programmes)
+
                 })
             });
         },
@@ -41,18 +42,23 @@ export default {
         },
 
         choixProgramme() {
-            this.donneeAdd = true
-            apiService.post('/api/client/programmes', {
-                id: this.programmeChoisi.id,
-                user: this.currentUser.id
+            if (_.isEmpty(this.programmeChoisi)) {
+                this.snackbar = true;
+                this.text = "vous n'avez rien choisi";
+            } else {
+                this.donneeAdd = true
+                apiService.post('/api/client/programmes', {
+                    id: this.programmeChoisi.id,
+                    user: this.currentUser.id
 
-            }).then(({ data }) => {
-                this.donneeAdd = true;
-                this.snackbar = true; 
-                this.text = "Vous avez opté pour le" + ' ' + this.programmeChoisi.name;
-            }).catch((error) => {
-                console.log(error)
-            })
+                }).then(({ data }) => {
+                    this.donneeAdd = true;
+                    this.snackbar = true;
+                    this.text = "Vous avez opté pour le" + ' ' + this.programmeChoisi.name;
+                }).catch((error) => {
+                    console.log(error)
+                })
+            }
         },
 
         recupProgrammes(items) {

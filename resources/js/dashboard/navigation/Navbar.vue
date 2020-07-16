@@ -1,23 +1,58 @@
 <template>
-  <nav class="pb-12" flat height="10px" tile>
-    <v-toolbar extended extension-height="10" color="brown">
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>G P E</v-toolbar-title>
+  <nav class="pb-1" flat height="10px" tile>
+    <v-toolbar extended extension-height="10" dark color="#3B444B">
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer" color="#FFD600"></v-app-bar-nav-icon>
+      <v-toolbar-title>
+        <v-icon color="#FFD600" class="hidden-sm-and-down">mdi-dumbbell</v-icon>
+        <span style="color:#FFD600">G P E</span>
+      </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-btn v-if="!isChecked" v-on:click="show" class="mr-4" to="/login"><v-icon class="mr-1">mdi-login</v-icon>Login</v-btn>
+      <v-btn color="#FFD600" class="mr-4 hidden-sm-and-down" to="/" text>
+        <v-icon class="mr-1">mdi-equal-box</v-icon>Accueil
+      </v-btn>
 
-      <v-btn v-if="isChecked" @click="logout" class="nav-item nav-link"><v-icon class="mr-1">mdi-logout</v-icon>Logout</v-btn>
+      <v-btn
+        color="#FFD600"
+        v-if="isGerant"
+        class="mr-4 hidden-sm-and-down"
+        :to="'/gerant/salle/' + currentUser.id"
+        text
+      >Salle De Sport</v-btn>
+      <v-btn
+        color="#FFD600"
+        v-if="isCoach"
+        :to="'/coach/programmes/' + currentUser.id"
+        class="nav-item nav-link hidden-sm-and-down"
+        text
+      >
+        <v-icon class="mr-1">mdi-account-star</v-icon>Programmes
+      </v-btn>
+
+      <v-btn
+        color="#FFD600"
+        v-if="isClient"
+        :to="'/client/programmes/'"
+        class="nav-item nav-link hidden-sm-and-down"
+        text
+      >
+        <v-icon class="mr-1">mdi-account-star</v-icon>Programmes
+      </v-btn>
+
+      <v-btn color="#FFD600" v-if="!isChecked" v-on:click="show" class="mr-4" to="/login" text>
+        <v-icon class="mr-1 hidden-sm-and-down">mdi-login</v-icon>Connexion
+      </v-btn>
+
+      <v-btn color="#FFD600" v-if="isChecked" @click="logout" class="nav-item nav-link" text>
+        <v-icon class="mr-1 hidden-sm-and-down">mdi-logout</v-icon>Deconnexion
+      </v-btn>
     </v-toolbar>
 
-    <v-navigation-drawer app v-model="drawer" color="brown lighten-1">
-      <v-btn
-          icon
-          @click.stop="drawer = !drawer"
-        >
-          <v-icon>mdi-chevron-left</v-icon>
-        </v-btn>
+    <v-navigation-drawer temporary app class="hidden-md-and-up" v-model="drawer" color="#3B444B">
+      <v-btn icon @click.stop="drawer = !drawer">
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
       <v-list>
         <v-list-item>
           <v-list-item-action>
@@ -25,7 +60,7 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="white--text">
-              <v-btn class="mr-4" to="/">Accueil</v-btn>
+              <v-btn color="#FFD600" class="mr-4" to="/" text>Accueil</v-btn>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -35,7 +70,12 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="white--text">
-              <v-btn class="mr-4" :to="'/coach/programmes/' + currentUser.id"> Programmes</v-btn>
+              <v-btn
+                class="mr-4"
+                color="#FFD600"
+                :to="'/coach/programmes/' + currentUser.id"
+                text
+              >Programmes</v-btn>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -45,7 +85,22 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="white--text">
-              <v-btn class="mr-4" to="/client/programmes">Programmes</v-btn>
+              <v-btn color="#FFD600" class="mr-4" to="/client/programmes" text>Programmes</v-btn>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item v-if="isGerant">
+          <v-list-item-action>
+            <v-icon class="white--text">mdi-office</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title class="white--text">
+              <v-btn
+                color="#FFD600"
+                class="mr-4"
+                :to="'/gerant/salle/' + currentUser.id"
+                text
+              >Salle De Sport</v-btn>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -58,7 +113,7 @@
 import { authenticationService } from "../_services/authentication.service";
 import { Role } from "../_helpers/role";
 import router from "../routes";
-import Axios from 'axios';
+import Axios from "axios";
 
 export default {
   data() {
@@ -95,7 +150,6 @@ export default {
   },
 
   methods: {
-
     logout() {
       authenticationService.logout();
       router.push("/login");
@@ -105,11 +159,11 @@ export default {
     },
     hide: function() {
       this.isDisplay = false;
-    },
+    }
   },
 
-    created() {
+  created() {
     authenticationService.currentUser.subscribe(x => (this.currentUser = x));
-  },
+  }
 };
 </script>

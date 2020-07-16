@@ -15,9 +15,10 @@ class SeancesController extends Controller
         $dataUpdate = Validator::make(
             $request->all(),
             [
-                'name' => 'required',
-                'contenu_seance_par_jour' => 'required',
-                'image' => 'required',
+                'exercice' => 'required',
+                'quantite_serie' => 'required',
+                'temps_recuperation' => 'required',
+                'nombre_jours' => 'required'
             ]
         )->validate();
 
@@ -27,9 +28,10 @@ class SeancesController extends Controller
             ->first();
 
         //Mise en relation des inputs et des colonnes pour la modification
-        $dataSeance->name = $dataUpdate['name'];
-        $dataSeance->contenu_seance_par_jour = $dataUpdate['contenu_seance_par_jour'];
-        $dataSeance->image = $dataUpdate['image'];
+        $dataSeance->exercice = $dataUpdate['exercice'];
+        $dataSeance->quantite_serie = $dataUpdate['quantite_serie'];
+        $dataSeance->temps_recuperation = $dataUpdate['temps_recuperation'];
+        $dataSeance->nombre_jours = $dataUpdate['nombre_jours'];
         //Sauvegarde des données entrées en base de donnée
         $dataSeance->save();
         return new SeancesRessource($dataSeance);

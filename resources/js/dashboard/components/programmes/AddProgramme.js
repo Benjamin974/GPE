@@ -1,6 +1,24 @@
 import { apiService } from '../../_services/apiService';
 export default {
-    props: ["programmes"],
+    props: {
+        programmes: {
+            default: function () {
+                return {}
+            },
+
+        },
+
+        programme: {
+            default: function () {
+                return {}
+            },
+
+        },
+
+        isModification: {
+            default: false
+        }
+    },
 
     data() {
         return {
@@ -50,6 +68,8 @@ export default {
                 v => !!v || 'Une image est requise',
             ],
 
+            id: ''
+
         }
     },
     methods: {
@@ -62,15 +82,42 @@ export default {
                 difficulte: this.difficulte,
                 nbre_seance_semaine: this.nbre_seance_semaine,
                 prix: this.prix,
-                id_image: this.selectImg.id
+                id_image: this.selectImg.id,
+                id: this.id == '' ? '' : this.id
 
-            }).then(response => {
+            }).then(({ data }) => {
+                if (this.isModification) {
+                    if(this.id) {
+                        const index = this.programmes.indexOf(this.programme);
+                        this.programmes.splice(index, 1);
+                        this.programmes.push(data.data);
+                    }
                     this.dialog = false;
-                    console.log(response.data.data);
-                    this.$emit('addProgramme', response.data.data)
+                    this.$emit('modifProgramme', data.data)
+                    this.snackbar = true;
+                    this.text = 'Le programme a bien été modifier'
+                }
+                else if (!this.isModification) {
+                    console.log(data.data);
+                    this.dialog = false;
+                    this.$emit('addProgramme', data.data)
                     this.snackbar = true;
                     this.text = 'Le programme a bien été ajouté'
+                }
             }).catch()
+
+        },
+
+        updateDatas() {
+            this.id = this.programme.id,
+                this.name = this.programme.name,
+                this.difficulte = this.programme.difficulte,
+                this.nbre_seance_semaine = this.programme.nbre_seance_semaine,
+                this.prix = this.programme.prix,
+                this.coach = this.$route.params.id,
+                this.selectSdsport = this.programme.salleDeSport,
+                this.selectImg = this.programme.image,
+                this.selectSeance = this.programme.seance
         },
 
         recupId() {
@@ -80,20 +127,20 @@ export default {
                         this.valeurSdsport = Object.create({}, { name: { value: _programmes.salleDeSport.name }, id: { value: _programmes.salleDeSport.id } });
                         this.itemsSdsport.push(this.valeurSdsport);
 
-                        this.valeurSeance = Object.create({}, { name: { value: _programmes.seance.name }, id: { value: _programmes.seance.id } });
+                        this.valeurSeance = Object.create({}, { exercice: { value: _programmes.seance.exercice }, id: { value: _programmes.seance.id } });
                         this.itemsSeance.push(this.valeurSeance);
 
-                        this.valeurImg = Object.create({}, { name: { value: _programmes.image.lien }, id: { value: _programmes.image.id } });
+                        this.valeurImg = Object.create({}, { lien: { value: _programmes.image.lien }, id: { value: _programmes.image.id } });
                         this.itemsImg.push(this.valeurImg);
                     })
 
                 })
                 .catch();
 
-        }
-
-
+        },
     },
+
+
 
     created() {
         this.recupId();
