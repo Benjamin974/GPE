@@ -59,10 +59,6 @@ export default {
             nbre_seance_semaineRules: [
                 v => !!v || 'Un nombre de séance par semaine est requis',
             ],
-            prix: '',
-            prixRules: [
-                v => !!v || 'Un prix est requise',
-            ],
             image: '',
             imageRules: [
                 v => !!v || 'Une image est requise',
@@ -81,7 +77,6 @@ export default {
                 name: this.name,
                 difficulte: this.difficulte,
                 nbre_seance_semaine: this.nbre_seance_semaine,
-                prix: this.prix,
                 id_image: this.selectImg.id,
                 id: this.id == '' ? '' : this.id
 
@@ -113,7 +108,6 @@ export default {
                 this.name = this.programme.name,
                 this.difficulte = this.programme.difficulte,
                 this.nbre_seance_semaine = this.programme.nbre_seance_semaine,
-                this.prix = this.programme.prix,
                 this.coach = this.$route.params.id,
                 this.selectSdsport = this.programme.salleDeSport,
                 this.selectImg = this.programme.image,

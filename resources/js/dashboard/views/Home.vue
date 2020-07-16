@@ -6,13 +6,17 @@
           <h2>GESTIONNAIRE DE PROGRAMME D'ENTRAÎNEMENT</h2>
         </v-col>
       </v-row>
-      <v-snackbar style="color:black" v-if="isChecked" v-model="snackbar" :timeout="timeout">
+      <v-snackbar dark v-if="isChecked" v-model="snackbar" :timeout="timeout">
         {{ text }}
-        <v-btn color="grey" @click="snackbar=false;">Close</v-btn>
+        <template v-slot:action>
+          <v-btn text  color="#FFD600" @click="snackbar=false;">Close</v-btn>
+        </template>
       </v-snackbar>
       <v-snackbar v-if="!isChecked" v-model="snackbar" :timeout="timeout">
         Vous n'êtes pas connecté
-        <v-btn color="blue" text @click="snackbar=false;">Close</v-btn>
+        <template v-slot:action>
+          <v-btn color="#FFD600" text @click="snackbar=false;">Close</v-btn>
+        </template>
       </v-snackbar>
     </v-card>
     <v-container class="mb-10 mt-10">

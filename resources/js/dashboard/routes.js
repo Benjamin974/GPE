@@ -22,7 +22,7 @@ const router = new VueRouter({
         component: Login
     },
     {
-        path: '/coach/programmes/:id',
+        path: '/coach/:id/programmes',
         name: 'programmes',
         component: Programmes,
         meta: { authorize: [Role.Coach] }
@@ -35,7 +35,7 @@ const router = new VueRouter({
     },
 
     {
-        path: '/gerant/salle/:id',
+        path: '/gerant/:id/salle',
         name: 'salle',
         component: Salle,
         meta: { authorize: [Role.Gerant] }

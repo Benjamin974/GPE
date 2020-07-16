@@ -26,7 +26,6 @@ class ProgrammesRessource extends JsonResource
             'name' => $this->name,
             'difficulte' => $this->difficulte,
             'nbre_seance_semaine' => $this->nbre_seance_semaine,
-            'prix' => $this->prix,
             'image' => $image
         ];
     }

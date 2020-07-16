@@ -62,7 +62,6 @@ class ProgrammesController extends Controller
                 'name' => 'required',
                 'difficulte' => 'required',
                 'nbre_seance_semaine' => 'required',
-                'prix' => 'required',
                 'id_image' => 'required',
                 'id' => ''
             ],
@@ -81,7 +80,6 @@ class ProgrammesController extends Controller
         $donneesBdd->name = $validator['name'];
         $donneesBdd->difficulte = $validator['difficulte'];
         $donneesBdd->nbre_seance_semaine = $validator['nbre_seance_semaine'];
-        $donneesBdd->prix = $validator['prix'];
 
         $coach = User::find($validator['id_user']);
         if (!$coach) {
@@ -122,7 +120,6 @@ class ProgrammesController extends Controller
                 'name' => 'required|string',
                 'difficulte' => 'required|string',
                 'nbre_seance_semaine' => 'required|string',
-                'prix' => 'required|string',
                 'id_image' => 'required|integer'
             ],
             [

@@ -36,6 +36,14 @@ class SeancesSeeder extends Seeder
                 "nombre_jours" => "20 jours"
 
             ],
+            [
+                "id" => 4,
+                "exercice" => 'développé couché et soulevé de terre',
+                "quantite_serie" => "5 série",
+                "temps_recuperation" => "1 min",
+                "nombre_jours" => "20 jours"
+
+            ],
         ];
 
         DB::table('seances')->insert(

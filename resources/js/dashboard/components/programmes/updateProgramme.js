@@ -27,9 +27,6 @@ export default {
                 nbre_seance_semaine: {
                     type: 'text'
                 },
-                prix: {
-                    type: 'text'
-                },
                 image: {
                     type: 'text'
                 }
