@@ -1,16 +1,12 @@
 import AddProgramme from './AddProgramme.vue';
-import Programme from '../programme/Programme.vue';
 import DeleteProgramme from '../programmes/DeleteProgramme.vue';
-import UpdateProgramme from '../programmes/UpdateProgramme.vue';
 import { apiService } from '../../_services/apiService';
 
 export default {
 
     components: {
         AddProgramme,
-        Programme,
         DeleteProgramme,
-        UpdateProgramme
     },
     
     data() {
@@ -34,7 +30,6 @@ export default {
     },
     methods: {
         getDatas() {
-            this.pgrogrammes = [];
             apiService.get('/api/programmes/coach/' + this.$route.params.id)
                 .then(({ data }) => {
                     data.data.forEach(_data => {
@@ -44,9 +39,23 @@ export default {
                 })
                 .catch();
         },
+
+        update(item, programme) {
+
+            console.log('update', programme);
+            const index = _.findIndex(this.programmes, {id: programme.id});
+            this.programmes.splice(index, 1, programme);
+            
+        },
+
+        add(programme) {
+            const index = _.findIndex(this.programmes, {id: programme.id});
+            this.programmes.push(programme);
+        }
     },
 
     created() {
         this.getDatas();
+        console.log('toto');
     }
 }

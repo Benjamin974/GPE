@@ -42,7 +42,6 @@
                     label="Images"
                     persistent-hint
                     return-object
-                    single-line
                   ></v-select>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
@@ -56,6 +55,9 @@
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
+                    type="number"
+                    min="1"
+                    max="6"
                     v-model="nbre_seance_semaine"
                     :rules="nbre_seance_semaineRules"
                     label="nombre de seance par semaine"
@@ -69,10 +71,9 @@
                     :items="itemsSdsport"
                     item-text="name"
                     item-value="id"
-                    label="salle"
+                    label="salle de sport"
                     persistent-hint
                     return-object
-                    single-line
                   ></v-select>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
@@ -84,7 +85,6 @@
                     label="seance"
                     persistent-hint
                     return-object
-                    single-line
                   ></v-select>
                 </v-col>
               </v-row>

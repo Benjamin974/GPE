@@ -14,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('auth:api')->prefix('users')->group(function () {
+    Route::get('/', 'UsersController@index');
+    Route::get('/{id}', 'UsersController@user')->where('id', "[0-9]+");
+});
+
 Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout')->middleware('auth:api');
 Route::post('register', 'AuthController@register');
 Route::post('contact', 'AdminController@contact')->middleware('auth:api');
+Route::delete('delete/{id}', 'AdminController@deleteUser')->where('id', "[0-9]+");
 
 Route::middleware('auth:api')->prefix('programmes')->group(function () {
     Route::group(['middleware' => 'roles:coach'], function () {
@@ -43,9 +49,6 @@ Route::middleware('auth:api')->prefix('gerant')->group(function () {
     Route::group(['middleware' => 'roles:gerant'], function () {
         Route::get('/{id}', 'SallesController@index')->where('id', "[0-9]+");
         Route::post('/{id}', 'SallesController@updateRoom')->where('id', "[0-9]+");
-        Route::post('/{id}/houre', 'SallesController@updateHoure')->where('id', "[0-9]+");
         Route::get('/clients', 'SallesController@getClients');
-        Route::get('/liste_clients', 'SallesController@listeClients');
-        Route::delete('/{id}/client', 'AdminController@deleteUser')->where('id', "[0-9]+");
     });
 });

@@ -15,6 +15,15 @@ class SallesController extends Controller
         return $dataSalle;
     }
 
+    public function listeClients(Request $request)
+    {
+        $gerant = $request->user();
+        $salleDeSport = SalleDeSportModel::where('id_user', '=', $gerant->id)->first();
+        $salleUser = $salleDeSport->client;
+        return $salleUser;
+        
+    }
+
     public function updateRoom(Request $request, $id)
     {
         $validator = Validator::make(
@@ -22,22 +31,39 @@ class SallesController extends Controller
             [
                 'name' => 'required',
                 'lieu' => 'required',
+            ],
+            [
+                'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
+            ]
+        )->validate();
+        $salleDeSport = SalleDeSportModel::find($id);
+        $salleDeSport->name = $validator['name'];
+        $salleDeSport->lieu = $validator['lieu'];
+        $salleDeSport->save();
+        return $salleDeSport;
+    }
+
+    public function getClients(Request $request)
+    {
+        $getClients = User::where('id_role', '=', 2)->get();
+        return $getClients;
+    }
+
+    public function updateHoure(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
                 'horaire' => 'required',
             ],
             [
                 'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
             ]
         )->validate();
-            $salleDeSport = SalleDeSportModel::find($id);
-            $salleDeSport->name = $validator['name'];
-            $salleDeSport->lieu = $validator['lieu'];
-            $salleDeSport->horaire = $validator['horaire'];
-            $salleDeSport->save();
-        return $salleDeSport;
-    }
 
-    public function getClients(Request $request) {
-        $getClients = User::where('id_role', '=', 2)->get();
-        return $getClients;
+        $salleDeSport = SalleDeSportModel::find($id);
+        $salleDeSport->horaire = $validator['horaire'];
+        $salleDeSport->save();
+        return $salleDeSport;
     }
 }

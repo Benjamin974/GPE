@@ -28,6 +28,11 @@ class ImagesSeeder extends Seeder
                 "lien" => "/storage/images/aerobique.jpeg",
                 
             ],
+            [
+                "id" => 4,
+                "lien" => "/storage/images/fullbody.jpg",
+                
+            ],
         ];
 
         DB::table('images')->insert(

@@ -29,10 +29,10 @@ class ProgrammesSeeder extends Seeder
             [
                 "id" => 2,
                 "id_user" => 1,
-                "id_salle_de_sport" => 1,
-                "id_seance" => 1,
-                "name" => "programme de gonflette",
-                "difficulte" => "difficile",
+                "id_salle_de_sport" => 2,
+                "id_seance" => 5,
+                "name" => "programme de débutant",
+                "difficulte" => "facile",
                 "nbre_seance_semaine" => "4",
                 "id_image" => 2
 
@@ -41,11 +41,11 @@ class ProgrammesSeeder extends Seeder
                 "id" => 3,
                 "id_user" => 1,
                 "id_salle_de_sport" => 1,
-                "id_seance" => 1,
+                "id_seance" =>  4,
                 "name" => "programme de fitness",
                 "difficulte" => "moyen",
                 "nbre_seance_semaine" => "6",
-                "id_image" => 2
+                "id_image" => 1
 
             ],
             [
@@ -68,8 +68,38 @@ class ProgrammesSeeder extends Seeder
                 "difficulte" => "facile",
                 "nbre_seance_semaine" => "4",
                 "id_image" => 3
-
             ],
+            [
+                "id" => 6,
+                "id_user" => 2,
+                "id_salle_de_sport" => 1,
+                "id_seance" => 2,
+                "name" => "programme de half-body",
+                "difficulte" => "facile",
+                "nbre_seance_semaine" => "4",
+                "id_image" => 3
+            ],
+            [
+                "id" => 7,
+                "id_user" => 2,
+                "id_salle_de_sport" => 2,
+                "id_seance" => 2,
+                "name" => "programme de full-body",
+                "difficulte" => "facile",
+                "nbre_seance_semaine" => "4",
+                "id_image" => 4
+            ],
+            [
+                "id" => 8,
+                "id_user" => 1,
+                "id_salle_de_sport" => 1,
+                "id_seance" => 6,
+                "name" => "programme de poid léger",
+                "difficulte" => "facile",
+                "nbre_seance_semaine" => "4",
+                "id_image" => 4
+            ],
+
 
         ];
 

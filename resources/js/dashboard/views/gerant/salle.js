@@ -11,23 +11,14 @@ export default {
         return {
             tab: null,
             salle: [],
-            today: '2019-01-08',
-            events: [
-                {
-                    name: 'Weekly Meeting',
-                    start: '2019-01-07 09:00',
-                    end: '2019-01-07 10:00',
-                },
-                {
-                    name: 'Thomas\' Birthday',
-                    start: '2019-01-10',
-                },
-                {
-                    name: 'Mash Potatoes',
-                    start: '2019-01-09 12:30',
-                    end: '2019-01-09 15:30',
-                },
-            ],
+            id_salle: '',
+            horaire: '',
+            horaireOuverture: '',
+            horaireFermeture: '',
+
+            snackbar: false,
+            erreur: "",
+            timeout: 3000,
         }
     },
 
@@ -36,8 +27,32 @@ export default {
             apiService.get('/api/gerant/' + this.$route.params.id).then(({ data }) => {
                 data.forEach(_data => {
                     this.salle.push(_data);
+                    this.id_salle = _data.id;
                 })
             })
+        },
+
+        updateHoure() {
+
+            if (!this.horaireOuverture == '' && !this.horaireFermeture == '') {
+                this.horaire = this.horaireOuverture + ' - ' + this.horaireFermeture;
+
+                apiService.post('/api/gerant/' + this.salle[0].id + '/houre', { horaire: this.horaire }).then(({ data }) => {
+                    this.horaire = data.horaire;
+                })
+            } else if (this.horaireOuverture == '' && this.horaireFermeture == '') {
+                this.snackbar = true;
+                this.erreur = "Selectionner l'horaire d'ouverture et de fermeture"
+            } else if (this.horaireOuverture == '') {
+                this.snackbar = true;
+                this.erreur = "Ajouter une horaire d'ouverture"
+            } else if (this.horaireFermeture == '') {
+                this.snackbar = true;
+                this.erreur = "ajouter une horaire de fermeture"
+            }
+
+            this.horaireOuverture = ''
+            this.horaireFermeture = ''
         }
     },
 

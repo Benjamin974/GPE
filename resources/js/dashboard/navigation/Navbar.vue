@@ -1,8 +1,8 @@
 <template>
   <nav class="pb-1" flat height="10px" tile>
     <v-toolbar extended extension-height="10" dark color="#3B444B">
+      <img class='mt-5' src="/storage/images/logo_gpe.png" height="80px" />
       <v-toolbar-title>
-        <v-icon color="#FFD600" class="hidden-sm-and-down">mdi-dumbbell</v-icon>
         <span style="color:#FFD600">G P E</span>
 
         <v-menu bottom offset-y origin="center center" transition="scale-transition">
@@ -59,7 +59,7 @@
                   <v-btn
                     color="#FFD600"
                     class="mr-4"
-                    :to="'/gerant/salle/' + currentUser.id"
+                    :to="'/gerant/' + currentUser.id + '/salle'"
                     text
                   >Salle De Sport</v-btn>
                 </v-list-item-title>

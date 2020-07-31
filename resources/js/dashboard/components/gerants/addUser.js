@@ -40,7 +40,7 @@ export default {
                         this.sameClient = data;
                         console.log(this.sameClient)
                     } else {
-                        this.sameClient = 'Demande envoyé au client'
+                        this.sameClient = 'Email envoyé au client et le client a été rajouté à la salle de sport'
                         console.log(data);
                     }
                 })

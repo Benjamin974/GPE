@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <addProgramme v-on:addProgramme="programmes.push($event)" class="pb-5"></addProgramme>
+    <addProgramme v-on:addProgramme="add($event)" class="pb-5"></addProgramme>
     <div width="80%" class="pt-5 pb-5">
       <div v-if="!programmes.length">
         <p>Vous n'avez pas de programme</p>
@@ -21,7 +21,7 @@
         <template v-slot:item.actions="{ item }">
           <v-row>
             <v-col md="6">
-              <addProgramme :programme="item" :programmes='programmes' :isModification="true" />
+              <addProgramme :programme="item" @modifProgramme="update(item, $event)" :isModification="true" />
             </v-col>
             <v-col md="6">
               <deleteProgramme

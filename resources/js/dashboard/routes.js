@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import Programmes from './views/admin/Programmes.vue';
 import ProgrammesClient from './views/client/Programmes.vue';
 import Salle from './views/gerant/Salle.vue';
+import ListeClients from './views/gerant/ListeClients.vue';
 import Login from './login/Login.vue';
 import { Role } from './_helpers/role.js';
 import { authenticationService } from '../dashboard/_services/authentication.service'
@@ -38,6 +39,13 @@ const router = new VueRouter({
         path: '/gerant/:id/salle',
         name: 'salle',
         component: Salle,
+        meta: { authorize: [Role.Gerant] }
+    },
+
+    {
+        path: '/gerant/:id/liste_clients',
+        name: 'listeclients',
+        component: ListeClients,
         meta: { authorize: [Role.Gerant] }
     },
     ]

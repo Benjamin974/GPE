@@ -1,12 +1,7 @@
 import { apiService } from '../../_services/apiService';
 export default {
     props: {
-        programmes: {
-            default: function () {
-                return {}
-            },
-
-        },
+    
 
         programme: {
             default: function () {
@@ -64,7 +59,7 @@ export default {
                 v => !!v || 'Une image est requise',
             ],
 
-            id: ''
+            id: '',
 
         }
     },
@@ -81,19 +76,15 @@ export default {
                 id: this.id == '' ? '' : this.id
 
             }).then(({ data }) => {
+                let prog = data.data;
                 if (this.isModification) {
-                    if(this.id) {
-                        const index = this.programmes.indexOf(this.programme);
-                        this.programmes.splice(index, 1);
-                        this.programmes.push(data.data);
-                    }
+                    console.log(prog);
                     this.dialog = false;
                     this.$emit('modifProgramme', data.data)
                     this.snackbar = true;
                     this.text = 'Le programme a bien été modifier'
                 }
                 else if (!this.isModification) {
-                    console.log(data.data);
                     this.dialog = false;
                     this.$emit('addProgramme', data.data)
                     this.snackbar = true;

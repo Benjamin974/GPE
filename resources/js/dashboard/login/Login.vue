@@ -24,6 +24,7 @@
               name="password"
               prepend-icon="mdi-lock"
               type="password"
+              @keydown.enter="connection"
             />
           </v-form>
         </v-card-text>

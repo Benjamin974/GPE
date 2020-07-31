@@ -9,10 +9,10 @@
       <v-snackbar dark v-if="isChecked" v-model="snackbar" :timeout="timeout">
         {{ text }}
         <template v-slot:action>
-          <v-btn text  color="#FFD600" @click="snackbar=false;">Close</v-btn>
+          <v-btn text color="#FFD600" @click="snackbar=false;">Close</v-btn>
         </template>
       </v-snackbar>
-      <v-snackbar v-if="!isChecked" v-model="snackbar" :timeout="timeout">
+      <v-snackbar dark v-if="!isChecked" v-model="snackbar" :timeout="timeout">
         Vous n'êtes pas connecté
         <template v-slot:action>
           <v-btn color="#FFD600" text @click="snackbar=false;">Close</v-btn>
@@ -57,7 +57,7 @@
             <v-btn
               color="#FDD600"
               class="text-center"
-              :to="'/coach/programmes/' + currentUser.id"
+              :to="'/coach/' + currentUser.id + '/programmes'"
             >Mes programmes</v-btn>
           </v-card-actions>
         </v-col>
@@ -81,7 +81,7 @@
             <v-btn
               color="#FDD600"
               class="text-center"
-              :to="'gerant/salle/' + currentUser.id"
+              :to="'/gerant/' + currentUser.id + '/salle'"
             >Ma salle de sport</v-btn>
           </v-card-actions>
         </v-col>

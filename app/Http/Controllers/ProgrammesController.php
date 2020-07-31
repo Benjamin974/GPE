@@ -104,48 +104,12 @@ class ProgrammesController extends Controller
             return 'err';
         }
         $donneesBdd->image()->associate($image);
+        // return $donneesBdd;
         $donneesBdd->save();
         
         return new ProgrammesRessource($donneesBdd);
     }
 
-    public function update(Request $request, $id)
-    {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'id_user' => 'required|integer',
-                'id_salle_de_sport' => 'required|integer',
-                'id_seance' => 'required|integer',
-                'name' => 'required|string',
-                'difficulte' => 'required|string',
-                'nbre_seance_semaine' => 'required|string',
-                'id_image' => 'required|integer'
-            ],
-            [
-                'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
-            ]
-        )->validate();
-
-        $dataProgramme = ProgrammeModel::find(1)
-            ->where('id', '=', $id)
-            ->first();
-
-        if (isset($dataProgramme)) {
-            $dataProgramme->id_user = $validator['id_user'];
-            $dataProgramme->id_salle_de_sport = $validator['id_salle_de_sport'];
-            $dataProgramme->id_seance = $validator['id_seance'];
-            $dataProgramme->name = $validator['name'];
-            $dataProgramme->difficulte = $validator['difficulte'];
-            $dataProgramme->nbre_seance_semaine = $validator['nbre_seance_semaine'];
-            $dataProgramme->prix = $validator['prix'];
-            $dataProgramme->image = $validator['image'];
-
-            $dataProgramme->save();
-        }
-
-        return $dataProgramme;
-    }
 
     public function delete($id)
     {

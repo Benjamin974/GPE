@@ -38,8 +38,24 @@ class SeancesSeeder extends Seeder
             ],
             [
                 "id" => 4,
-                "exercice" => 'développé couché et soulevé de terre',
+                "exercice" => 'vélo lent, vélo assis.',
                 "quantite_serie" => "5 série",
+                "temps_recuperation" => "1 min",
+                "nombre_jours" => "20 jours"
+
+            ],
+            [
+                "id" => 5,
+                "exercice" => 'pompes et squats',
+                "quantite_serie" => "5 série",
+                "temps_recuperation" => "1 min",
+                "nombre_jours" => "20 jours"
+
+            ],
+            [
+                "id" => 6,
+                "exercice" => 'soulevement haltère léger',
+                "quantite_serie" => "10 série",
                 "temps_recuperation" => "1 min",
                 "nombre_jours" => "20 jours"
 

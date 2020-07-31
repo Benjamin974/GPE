@@ -64,26 +64,23 @@ class AdminController extends Controller
 
     public function deleteUser(Request $request, $id)
     {
-        $getUsers = User::where('id', '=', $id)->get();
-        foreach ($getUsers as $getUser) {
-            $userId = $getUser->id;
-            $getProgrammesOfUser = $getUser->programme()->detach();
-            $getSalleDeSport = SalleDeSportModel::whereHas('client', function (Builder $query) use ($userId) {
-                $query->where('id', '=', $userId);
-            })->first();
-            $getSalleDeSportOfUser = $getSalleDeSport->client()->detach();
-            if ($getSalleDeSportOfUser) {
-                $ok = 'ok';
-            } else {
-                $erreur = 'erreur';
-                return $erreur;
-            }
-            $getUser->delete();
-            if ($getUser) {
-                return $ok . "l'utilisateur a été supprimé";
-            } else {
-                return 'erreur';
-            }
+        $getUsers = User::where('id', '=', $id)->first();
+        $userId = $getUsers->id;
+        $getProgrammesOfUser = $getUsers->programme()->detach();
+        $getSalleDeSport = SalleDeSportModel::whereHas('client', function (Builder $query) use ($userId) {
+            $query->where('id', '=', $userId);
+        })->first();
+        $detachClient = $getSalleDeSport->client()->detach($userId);
+        if ($detachClient) {
+            $ok = 'ok';
+        } else {
+            return 'nok';
+        }
+        $getUsers->delete();
+        if ($getUsers) {
+            return $ok . "l'utilisateur a été supprimé";
+        } else {
+            return 'erreur';
         }
     }
 }

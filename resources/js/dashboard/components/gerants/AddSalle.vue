@@ -2,7 +2,7 @@
   <div>
     <v-dialog v-model="dialog" persistent max-width="700px">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" @click='updateDatas' color='#FDD600'>
+        <v-btn v-on="on" @click="updateDatas" color="#FDD600">
           <v-icon>mdi-shape-square-plus</v-icon>
         </v-btn>
       </template>
@@ -13,13 +13,10 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field v-model='name' label="nom"></v-text-field>
+                  <v-text-field v-model="name" label="nom"></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field v-model='lieu' label="lieu"></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="4">
-                  <v-text-field v-model='horaire' label="horaire"></v-text-field>
+                  <v-text-field v-model="lieu" label="lieu"></v-text-field>
                 </v-col>
               </v-row>
             </v-container>
